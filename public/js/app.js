@@ -15,5 +15,8 @@ var app = angular.module('meanMapApp', ['addCtrl', 'queryCtrl', 'headerCtrl', 'g
             templateUrl: 'partials/queryForm.html',
 
         // All else forward to the Join Team Control Panel
-        }).otherwise({redirectTo:'/join'})
+        }).when('/leave', {
+            controller: 'loginCtrl',
+            templateUrl: 'partials/loginForm.html'
+        }).otherwise({redirectTo:'/leave'})
     });
