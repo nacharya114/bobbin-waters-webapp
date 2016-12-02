@@ -11,8 +11,9 @@ loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location,
     $scope.verifyLogin = function() {
         var user = $scope.formData.username;
         var pass = $scope.formData.password;
-        loginService.verifyLogin(user, pass).then((bo)=>{
+        loginService.verifyLogin(user, pass).then(()=>{
             $location.path("/#/test");
         });
+        console.log("in loingCtrl");
     }
 });

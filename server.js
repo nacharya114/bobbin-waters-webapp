@@ -13,7 +13,7 @@ var app             = express();
 // Express Configuration
 // -----------------------------------------------------
 // Sets the connection to MongoDB
-mongoose.connect(database.mongolab.url);
+//mongoose.connect(database.mongolab.url);
 
 // DB connection info
 var con = mysql.createConnection({

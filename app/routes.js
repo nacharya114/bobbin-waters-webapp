@@ -34,7 +34,7 @@ module.exports = function(app) {
         if (!(username == "test" && password == "password")) {
             obj.status = false;
         }
-
+        console.log("testing console");
         res.json(obj);
 
     });
