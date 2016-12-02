@@ -26,14 +26,16 @@ module.exports = function(app) {
 
     app.get("/userList", function(req, res) {
 
-        
+
 
         con.query('SELECT * FROM userInfo',function(err,rows) {
 
         if(err)
            console.log("Error Selecting : %s ",err );
 
-            res.render('userList',{page_title:"Users",data:rows});
+            console.log(rows);
+            res.json(rows);
+            // res.render('userList',{page_title:"Users",data:rows});
 
          });
 
