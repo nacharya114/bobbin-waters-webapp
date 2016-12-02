@@ -23,3 +23,6 @@ var app = angular.module('meanMapApp', ['addCtrl', 'queryCtrl', 'headerCtrl', 'g
         })
         .otherwise({redirectTo:'/leave'})
     });
+
+
+
