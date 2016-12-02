@@ -12,7 +12,12 @@ loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location,
         var user = $scope.formData.username;
         var pass = $scope.formData.password;
         loginService.verifyLogin(user, pass).then(()=>{
-            $location.path("/#/test");
+            console.log("inside promise");
+            $location.path('/#/test');
+            $scope.apply();
+            gservice.empty();
+        }, () => {
+            console.log("error in promise");
         });
         console.log("in loingCtrl");
     }

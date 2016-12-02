@@ -22,6 +22,18 @@ angular.module('gservice', [])
 
         // Functions
         // --------------------------------------------------------------
+
+        //Emptys map div
+
+        googleMapService.empty = function() {
+            map = null;
+        }
+
+
+
+
+
+
         // Refresh the Map with new data. Takes three parameters (lat, long, and filtering results)
         googleMapService.refresh = function(latitude, longitude, filteredResults){
 
