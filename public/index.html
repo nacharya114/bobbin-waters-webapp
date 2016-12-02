@@ -29,6 +29,8 @@
     <script src="js/addCtrl.js"></script>
     <script src="js/queryCtrl.js"></script>
     <script src="js/headerCtrl.js"></script>
+    <script src="js/loginCtrl.js"></script>
+    <script src="js/loginService.js"></script>
 </head>
 
 <body>
@@ -42,9 +44,12 @@
 
         <!-- Header items are made active upon selection -->
         <ul class="nav nav-pills pull-right">
-            <li ng-class="{ active: isActive('/leave')}" ng-if="loggedin"><a href="/#/leave">Log Out</a></li>
-             <li ng-class="{ active: isActive('/join')}"><a href="/#/join">Join the Team</a></li>
-            <li ng-class="{ active: isActive('/find')}"><a href="/#/find">Find Teammates</a></li>
+            <li ng-class="{ active: isActive('/leave')}" ng-if="!loggedin" ng-click="logIn()"><a href="/#/join">Log In</a></li>
+            <li ng-class="{ active: isActive('/leave')}" ng-if="loggedin" ng-click="logOut()"><a href="/#/leave">Log Out</a></li>
+            <li ng-class="{ active: isActive('/join')}" ng-if="loggedin"><a href="/#/join">Edit Profile</a></li>
+            <li ng-class="{ active: isActive('/find')}" ng-if="loggedin"><a href="/#/find">Submit Reports</a></li>
+
+
         </ul>
 
         <!-- Header Title -->
@@ -67,8 +72,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Credits to Ahmed Haque for Scotch IO -
-            <a href="https://scotch.io/">App Tutorial</a> | <a href="https://github.com/afhaque/MeanMapAppV2.0">Github Repo</a></p>
+        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Credits to Ahmed Haque from Scotch IO</p>
     </div>
 
 </div>

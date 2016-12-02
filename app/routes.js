@@ -23,6 +23,22 @@ module.exports = function(app) {
         });
     });
 
+
+    app.get('/get_user', function(req, res) {
+
+        var username = req.query.username;
+        var password = req.query.password;
+
+        var obj = { status: true};
+
+        if (!(username == "test" && password == "password")) {
+            obj.status = false;
+        }
+
+        res.json(obj);
+
+    });
+
     // POST Routes
     // --------------------------------------------------------
     // Provides method for saving new users in the db
