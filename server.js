@@ -16,7 +16,7 @@ var app             = express();
 //mongoose.connect(database.mongolab.url);
 
 // DB connection info
-var con = mysql.createConnection({
+/*var con = mysql.createConnection({
   host: "bobbindb.chwrjcnilfzs.us-west-2.rds.amazonaws.com",
   user: "root",
   password: "password",
@@ -30,7 +30,7 @@ con.connect(function(err){
     return;
   }
   console.log('Connection established');
-});
+});*/
 
 
 
