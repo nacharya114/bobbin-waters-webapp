@@ -13,7 +13,7 @@ var app             = express();
 // Express Configuration
 // -----------------------------------------------------
 // Sets the connection to MongoDB
-mongoose.connect(database.mongolab.url);
+//mongoose.connect(database.mongolab.url);
 
 // DB connection info
 var con = mysql.createConnection({
@@ -31,6 +31,8 @@ con.connect(function(err){
   }
   console.log('Connection established');
 });
+
+
 
 // Logging and Parsing
 app.use(express.static(__dirname + '/public'));                 // sets the static files location to public
