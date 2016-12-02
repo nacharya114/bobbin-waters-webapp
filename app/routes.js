@@ -1,7 +1,8 @@
 // Dependencies
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
-
+var db              = require("../server.js");
+var connection      = db();
 
 // Opens App Routes
 module.exports = function(app) {
@@ -121,6 +122,8 @@ module.exports = function(app) {
         });
     });
 
+
+
     // DELETE Routes (Dev Only)
     // --------------------------------------------------------
     // Delete a User off the Map based on objID
@@ -135,4 +138,6 @@ module.exports = function(app) {
                 res.json(req.body);
         });
     });
+
+
 };
