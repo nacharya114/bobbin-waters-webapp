@@ -11,7 +11,13 @@ var con = mysql.createConnection({
   database: "bobbin"
 });
 
-
+con.connect(function(err){
+            if(err){
+                console.log('Error connecting to Db');
+                return;
+            }
+            console.log('Connection established');
+        });
 
 
 // Opens App Routes
@@ -20,20 +26,16 @@ module.exports = function(app) {
 
     app.get("/userList", function(req, res) {
 
-        con.connect(function(err){
-            if(err){
-                console.log('Error connecting to Db');
-                return;
-            }
-            console.log('Connection established');
-        });
-        
+
+
         con.query('SELECT * FROM userInfo',function(err,rows) {
 
         if(err)
            console.log("Error Selecting : %s ",err );
 
+            console.log(rows);
             res.json(rows);
+            // res.render('userList',{page_title:"Users",data:rows});
 
          });
 
