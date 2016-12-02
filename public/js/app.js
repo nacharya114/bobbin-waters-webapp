@@ -20,3 +20,6 @@ var app = angular.module('meanMapApp', ['addCtrl', 'queryCtrl', 'headerCtrl', 'g
             templateUrl: 'partials/loginForm.html'
         }).otherwise({redirectTo:'/leave'})
     });
+
+
+

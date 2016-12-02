@@ -14,6 +14,23 @@ var app             = express();
 // Sets the connection to MongoDB
 mongoose.connect(database.mongolab.url);
 
+// DB connection info
+var con = mysql.createConnection({
+  host: "bobbindb.chwrjcnilfzs.us-west-2.rds.amazonaws.com",
+  user: "root",
+  password: "password",
+  port: "3306",
+  database: "bobbin"
+});
+
+con.connect(function(err){
+  if(err){
+    console.log('Error connecting to Db');
+    return;
+  }
+  console.log('Connection established');
+});
+
 // Logging and Parsing
 app.use(express.static(__dirname + '/public'));                 // sets the static files location to public
 app.use('/bower_components',  express.static(__dirname + '/bower_components')); // Use BowerComponents
