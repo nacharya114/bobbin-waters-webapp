@@ -2,7 +2,7 @@
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
 var db              = require("../server.js");
-var connection      = db();
+// var connection      = db();
 
 // Opens App Routes
 module.exports = function(app) {
