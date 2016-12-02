@@ -1,6 +1,7 @@
 // Dependencies
 // -----------------------------------------------------
 var express         = require('express');
+var mysql           = require('mysql');
 var mongoose        = require('mongoose');
 var port            = process.env.PORT || 3000;
 var database        = require('./app/config');
