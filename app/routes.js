@@ -1,11 +1,29 @@
 // Dependencies
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
-var db              = require("../server.js");
-// var connection      = db();
+var mysql           = require("mysql");
+
+var con = mysql.createConnection({
+  host: "bobbindb.chwrjcnilfzs.us-west-2.rds.amazonaws.com",
+  user: "root",
+  password: "password",
+  port: "3306",
+  database: "bobbin"
+});
+
+con.connect(function(err){
+  if(err){
+    console.log('Error connecting to Db');
+    return;
+  }
+  console.log('Connection established');
+});
+
+
 
 // Opens App Routes
 module.exports = function(app) {
+
 
     // GET Routes
     // --------------------------------------------------------
@@ -138,6 +156,8 @@ module.exports = function(app) {
                 res.json(req.body);
         });
     });
+
+
 
 
 };
