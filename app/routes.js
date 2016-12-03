@@ -20,14 +20,7 @@ module.exports = function(app) {
 
     app.get("/userList", function(req, res) {
 
-        con.connect(function(err){
-            if(err){
-                console.log('Error connecting to Db');
-                return;
-            }
-            console.log('Connection established');
-        });
-        
+
         con.query('SELECT * FROM userInfo',function(err,rows) {
 
         if(err)
@@ -36,6 +29,20 @@ module.exports = function(app) {
             res.json(rows);
 
          });
+
+    });
+
+    app.get("/getUser", function(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+        var obj = { status: false};
+        con.query("SELECT * FROM userInfo WHERE username = ? and password = ?",
+            [username, password], function(err, res){
+            if (res.length > 0) {
+                obj.status = true;
+            }
+        });
+        res.json(obj);
 
     });
 
