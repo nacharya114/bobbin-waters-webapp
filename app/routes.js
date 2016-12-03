@@ -37,12 +37,14 @@ module.exports = function(app) {
         var password = req.query.password;
         var obj = { status: false};
         con.query("SELECT * FROM userInfo WHERE username = ? and password = ?",
-            [username, password], function(err, res){
-            if (res.length > 0) {
-                obj.status = true;
-            }
+            [username, password], function(err, response){
+            //if (res.length > 0) {
+                if (err)
+                    res.json(err);
+                console.log(response);
+                res.json(response);
+            //}
         });
-        res.json(obj);
 
     });
 
@@ -64,20 +66,6 @@ module.exports = function(app) {
     });
 
 
-    app.get('/get_user', function(req, res) {
-
-        var username = req.query.username;
-        var password = req.query.password;
-
-        var obj = { status: true};
-
-        if (!(username == "test" && password == "password")) {
-            obj.status = false;
-        }
-        console.log("testing console");
-        res.json(obj);
-
-    });
 
     // POST Routes
     // --------------------------------------------------------

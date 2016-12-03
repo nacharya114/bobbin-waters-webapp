@@ -1,20 +1,18 @@
 var loginCtrl = angular.module('loginCtrl',['gservice', 'loginService']);
-loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location, gservice, loginService){
+loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location, $window, gservice, loginService){
 
     //Initializing form data
     $scope.formData = {};
 
-    $scope.testRelocate = function() {
-        $location.path('/#/test');
-    }
 
     $scope.verifyLogin = function() {
         var user = $scope.formData.username;
         var pass = $scope.formData.password;
         loginService.verifyLogin(user, pass).then(()=>{
             console.log("inside promise");
-            $location.path('/#/test');
-            $scope.apply();
+
+            $window.location.href = '/#/edit';
+            console.log($location.path());
             gservice.empty();
         }, () => {
             console.log("error in promise");

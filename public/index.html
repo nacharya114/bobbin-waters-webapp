@@ -31,6 +31,7 @@
     <script src="js/headerCtrl.js"></script>
     <script src="js/loginCtrl.js"></script>
     <script src="js/loginService.js"></script>
+    <script src="js/editCtrl.js"></script>
 </head>
 
 <body>
@@ -44,10 +45,10 @@
 
         <!-- Header items are made active upon selection -->
         <ul class="nav nav-pills pull-right">
-            <li ng-class="{ active: isActive('/leave')}" ng-if="!loggedin" ng-click="logIn()"><a href="/#/join">Log In</a></li>
-            <li ng-class="{ active: isActive('/leave')}" ng-if="loggedin" ng-click="logOut()"><a href="/#/leave">Log Out</a></li>
-            <li ng-class="{ active: isActive('/join')}" ng-if="loggedin"><a href="/#/join">Edit Profile</a></li>
-            <li ng-class="{ active: isActive('/find')}" ng-if="loggedin"><a href="/#/find">Submit Reports</a></li>
+            <li ng-class="{ active: isActive('/leave')}" ng-if="!show()" >Log In</li>
+            <li ng-class="{ active: isActive('/leave')}" ng-if="show()"><a href="/#/leave">Log Out</a></li>
+            <li ng-class="{ active: isActive('/edit')}" ng-if="show()"><a href="/#/edit">Edit Profile</a></li>
+            <li ng-class="{ active: isActive('/find')}" ng-if="show()"><a href="/#/find">Submit Reports</a></li>
 
 
         </ul>
