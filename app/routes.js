@@ -46,6 +46,22 @@ module.exports = function(app) {
 
     });
 
+    app.post("/createUser", function(req, res) {
+        var firstName = req.query.firstName;
+        var lastName = req.query.lastName;
+        var username = req.query.username;
+        var password = req.query.password;
+        var email = req.query.email;
+        var accountType = req.query.accountType;
+        var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
+        con.query("INSERT INTO userInfo (firstName, lastName, username, email, password, accountType) VALUES = ?",
+         values, function(err, res) {
+            if (err) {
+                console.log("Error");
+            }
+         });
+    });
+
     // GET Routes
     // --------------------------------------------------------
     // Retrieve records for all users in the db
