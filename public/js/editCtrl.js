@@ -15,12 +15,16 @@ editCtrl.controller('editCtrl', function($scope, $http, $rootScope, $location, $
         // var accountType = req.body.accountType;
         // var address = req.body.address;
         // var title = req.body.title;
+        var userPassword = loginService.user.password;
+        if ($scope.formData.newPassword != userPassword) {
+            userPassword = $scope.formData.newPassword;
+        }
 
         var data = {
             firstName: $scope.formData.firstName,
             lastName: $scope.formData.lastName,
-            username: $scope.formData.username,
-            password: $scope.formData.password,
+            username: loginService.user.username,
+            password: userPassword,
             email: $scope.formData.email,
             accountType: loginService.user.accountType,
             address: $scope.formData.address,
