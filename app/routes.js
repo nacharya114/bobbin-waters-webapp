@@ -17,7 +17,9 @@ var con = mysql.createConnection({
 // Opens App Routes
 module.exports = function(app) {
 
-
+    /* ------------------------------------------------
+    User Table Endpoints
+    --------------------------------------------------*/
     app.get("/userList", function(req, res) {
         con.query('SELECT * FROM userInfo',function(err,rows) {
         if(err)
@@ -32,61 +34,12 @@ module.exports = function(app) {
         var obj = { status: false};
         con.query("SELECT * FROM userInfo WHERE username = ? and password = ?",
             [username, password], function(err, response){
-            //if (res.length > 0) {
-                if (err)
-                    res.json(err);
-                console.log(response);
-                res.json(response);
-            //}
+            if (err)
+                res.json(err);
+            console.log(response);
+            res.json(response);
+
         });
-    });
-
-    app.get("/sourceReportList", function(req, res) {
-        con.query('SELECT * FROM sourceReportInfo',function(err,rows) {
-        if(err)
-           console.log("Error Selecting : %s ",err );
-            res.json(rows);
-         });
-    });
-
-    app.get("/qualityReportList", function(req, res) {
-        con.query('SELECT * FROM qualityReportInfo',function(err,rows) {
-        if(err)
-           console.log("Error Selecting : %s ",err );
-            res.json(rows);
-         });
-    });
-
-    app.get("/sourceReportCount", function(req, res) {
-        con.query('SELECT COUNT(*) as rowcount FROM sourceReportInfo',function(err,rows) {
-        if(err)
-           console.log("Error Selecting : %s ",err );
-            res.json(rows);
-         });
-    });
-
-    app.get("/qualityReportCount", function(req, res) {
-        con.query('SELECT COUNT(*) as rowcount FROM qualityReportInfo',function(err,rows) {
-        if(err)
-           console.log("Error Selecting : %s ",err );
-            res.json(rows);
-         });
-    });
-
-    app.post("/addUser", function(req, res) {
-        var firstName = req.query.firstName;
-        var lastName = req.query.lastName;
-        var username = req.query.username;
-        var password = req.query.password;
-        var email = req.query.email;
-        var accountType = req.query.accountType;
-        var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
-        con.query("INSERT INTO userInfo (firstName, lastName, username, email, password, accountType) VALUES = ?",
-         values, function(err, res) {
-            if (err) {
-                console.log("Error");
-            }
-         });
     });
 
     app.post("/editUser", function(req, res) {
@@ -111,6 +64,104 @@ module.exports = function(app) {
                 }
         });
     });
+
+    app.post("/addUser", function(req, res) {
+        var firstName = req.query.firstName;
+        var lastName = req.query.lastName;
+        var username = req.query.username;
+        var password = req.query.password;
+        var email = req.query.email;
+        var accountType = req.query.accountType;
+        var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
+        con.query("INSERT INTO userInfo (firstName, lastName, username, email, password, accountType) VALUES = ?",
+         values, function(err, res) {
+            if (err) {
+                console.log("Error");
+            }
+         });
+    });
+
+
+    /* ------------------------------------------------
+    Source Report Table Endpoints
+    --------------------------------------------------*/
+    app.get("/sourceReportList", function(req, res) {
+        con.query('SELECT * FROM sourceReportInfo',function(err,rows) {
+        if(err)
+           console.log("Error Selecting : %s ",err );
+            res.json(rows);
+         });
+    });
+
+    app.get("/sourceReportCount", function(req, res) {
+        con.query('SELECT COUNT(*) as rowcount FROM sourceReportInfo',function(err,rows) {
+        if(err)
+           console.log("Error Selecting : %s ",err );
+            res.json(rows);
+         });
+    });
+
+    app.post("/addSourceReport", function(req, res) {
+        var date = req.query.date;
+        var reportNumber = req.query.reportNumber;
+        var username = req.query.username;
+        var longitude = req.query.longitude;
+        var latitude = req.query.latitude;
+        var type = req.query.type;
+        var condition = req.query.condition;
+        var values = "(" + date + "," + reportNumber + "," + username + ","
+            + longitude + "," + latitude + "," + type + "," + condition + ")";
+        con.query("INSERT INTO sourceReportInfo (date, reportNumber, username, "
+            + "longitude, latitude, type, condition) VALUES = ?", values,
+            function(err, res) {
+            if (err) {
+                console.log("Error");
+            }
+         });
+    });
+
+
+    /* ------------------------------------------------
+    Quality Table Endpoints
+    --------------------------------------------------*/
+    app.get("/qualityReportList", function(req, res) {
+        con.query('SELECT * FROM qualityReportInfo',function(err,rows) {
+        if(err)
+           console.log("Error Selecting : %s ",err );
+            res.json(rows);
+         });
+    });
+
+    app.get("/qualityReportCount", function(req, res) {
+        con.query('SELECT COUNT(*) as rowcount FROM qualityReportInfo',function(err,rows) {
+        if(err)
+           console.log("Error Selecting : %s ",err );
+            res.json(rows);
+         });
+    });
+
+    app.post("/addQualityReport", function(req, res) {
+        var date = req.query.date;
+        var reportNumber = req.query.reportNumber;
+        var username = req.query.username;
+        var longitude = req.query.longitude;
+        var latitude = req.query.latitude;
+        var condition = req.query.condition;
+        var virus = req.query.virus;
+        var chem = req.query.chem;
+        var values = "(" + date + "," + reportNumber + "," + username + ","
+            + longitude + "," + latitude + "," + condition+ "," + virus + "," +
+            chem + ")";
+        con.query("INSERT INTO qualityReportInfo (date, reportNumber, username, "
+            + "longitude, latitude, condition, virus, chem) VALUES = ?", values,
+            function(err, res) {
+            if (err) {
+                console.log("Error");
+            }
+         });
+    });
+
+
 
 
     // GET Routes
