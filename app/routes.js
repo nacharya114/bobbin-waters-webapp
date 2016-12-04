@@ -36,7 +36,6 @@ module.exports = function(app) {
             [username, password], function(err, response){
             if (err)
                 res.json(err);
-            console.log(response);
             res.json(response);
 
         });
@@ -67,19 +66,20 @@ module.exports = function(app) {
         });
     });
 
-    app.post("/addUser", function(req, res) {
-        var firstName = req.query.firstName;
-        var lastName = req.query.lastName;
-        var username = req.query.username;
-        var password = req.query.password;
-        var email = req.query.email;
-        var accountType = req.query.accountType;
+    app.put("/addUser", function(req, res) {
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var username = req.body.username;
+        var password = req.body.password;
+        var email = req.body.email;
+        var accountType = req.body.accountType;
         var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
         con.query("INSERT INTO userInfo (firstName, lastName, username, email, password, accountType) VALUES = ?",
-         values, function(err, res) {
+         values, function(err, resp) {
             if (err) {
                 console.log("Error");
             }
+            res.json(resp);
          });
     });
 
@@ -103,22 +103,23 @@ module.exports = function(app) {
          });
     });
 
-    app.post("/addSourceReport", function(req, res) {
-        var date = req.query.date;
-        var reportNumber = req.query.reportNumber;
-        var username = req.query.username;
-        var longitude = req.query.longitude;
-        var latitude = req.query.latitude;
-        var type = req.query.type;
-        var condition = req.query.condition;
+    app.put("/addSourceReport", function(req, res) {
+        var date = req.body.date;
+        var reportNumber = req.body.reportNumber;
+        var username = req.body.username;
+        var longitude = req.body.longitude;
+        var latitude = req.body.latitude;
+        var type = req.body.type;
+        var condition = req.body.condition;
         var values = "(" + date + "," + reportNumber + "," + username + ","
             + longitude + "," + latitude + "," + type + "," + condition + ")";
         con.query("INSERT INTO sourceReportInfo (date, reportNumber, username, "
             + "longitude, latitude, type, condition) VALUES = ?", values,
-            function(err, res) {
+            function(err, resp) {
             if (err) {
                 console.log("Error");
             }
+            res.json(resp);
          });
     });
 
@@ -142,24 +143,25 @@ module.exports = function(app) {
          });
     });
 
-    app.post("/addQualityReport", function(req, res) {
-        var date = req.query.date;
-        var reportNumber = req.query.reportNumber;
-        var username = req.query.username;
-        var longitude = req.query.longitude;
-        var latitude = req.query.latitude;
-        var condition = req.query.condition;
-        var virus = req.query.virus;
-        var chem = req.query.chem;
+    app.put("/addQualityReport", function(req, res) {
+        var date = req.body.date;
+        var reportNumber = req.body.reportNumber;
+        var username = req.body.username;
+        var longitude = req.body.longitude;
+        var latitude = req.body.latitude;
+        var condition = req.body.condition;
+        var virus = req.body.virus;
+        var chem = req.body.chem;
         var values = "(" + date + "," + reportNumber + "," + username + ","
             + longitude + "," + latitude + "," + condition+ "," + virus + "," +
             chem + ")";
         con.query("INSERT INTO qualityReportInfo (date, reportNumber, username, "
             + "longitude, latitude, condition, virus, chem) VALUES = ?", values,
-            function(err, res) {
+            function(err, resp) {
             if (err) {
                 console.log("Error");
             }
+            res.json(resp);
          });
     });
 
