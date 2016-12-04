@@ -24,16 +24,16 @@
                     <input type="text" class="form-control" id="longitude" placeholder="-98.35" ng-model="formData.longitude" readonly>
                 </div>
                 <!-- Note ng-true-value which translates check values into explicit gender strings -->
-                 <label class="radio control-label" ng-if="checkPermissions(user)">Report Type</label>
-                <div class="radio" ng-if="checkPermissions(user)">
+                 <label class="radio control-label" ng-if="checkPermission(user)">Report Type</label>
+                <div class="radio" ng-if="checkPermission(user)" required>
                     <label>
                         <input type="radio" name="optionsRadios" id="radiosource" value='Source' ng-model="reportType">
                         Source Report
                     </label>
-                </div>
-                <div class="radio" ng-if="checkPermissions(user)" required>
+                <!-- </div> -->
+                <!-- <div class="radio" ng-if="checkPermission(user)" required> -->
                     <label>
-                        <input type="radio" name="optionsRadios" id="radiofemale" value="Purity" ng-model="reportType">
+                        <input type="radio" name="optionsRadios" id="radiopurity" value='Purity' ng-model="reportType">
                         Purity Report
                     </label>
                 </div>
@@ -51,7 +51,7 @@
                 </div>
 
                 <!-- Query button. Note that its tied to queryUsers() function from queryCtrl.  -->
-                <button type="submit" class="btn btn-danger btn-block" ng-click="queryUsers()">Search</button>
+                <button type="submit" class="btn btn-danger btn-block" ng-click="checkReport()">Search</button>
             </form>
         </div>
 

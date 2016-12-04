@@ -4,13 +4,18 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
     //Initializing form data
     $scope.user = loginService.user;
     $scope.formData = {};
-    $scope.reportType = "Source";
+    $scope.reportType = 'Scope';
 
     $scope.checkPermission = function(user) {
+        console.log(user.accountType);
         if (user.accountType == "User") {
             return false;
         }
         return true;
+    }
+
+    $scope.checkReport = function() {
+        console.log($scope.reportType);
     }
 
     $scope.submit = function() {

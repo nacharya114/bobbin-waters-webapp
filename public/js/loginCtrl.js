@@ -4,10 +4,7 @@ loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location,
     //Initializing form data
     $scope.formData = {};
 
-    $scope.logOut = function() {
-        loginService.logOut();
-        $window.location.href = '/#/leave';
-    }
+
 
 
     $scope.verifyLogin = function() {
