@@ -10,8 +10,11 @@
 
         <!-- Panel Body -->
         <div class="panel-body">
-
-            <table class="table">
+            <label for="fname">Which type of report:</label>
+            <label class="radio-inline"><input id="source" value="source" ng-model="opt" type="radio" name="opt">Source</label>
+            <label class="radio-inline"><input id="quality" value="quality" ng-model="opt" type="radio" name="opt">Quality</label>
+            <label class="radio-inline"><input id="historical" value="historical" ng-model="opt" type="radio" name="opt">Historical</label>
+            <table class="table" ng-show="opt == 'source'">
                 <tr>
                     <th>#</th>
                     <th>Date</th>
@@ -28,7 +31,7 @@
                 </tr>
             </table>
 
-            <table class="table">
+            <table class="table" ng-show="opt == 'quality'">
                 <tr>
                     <th>#</th>
                     <th>Date</th>
