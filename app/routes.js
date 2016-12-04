@@ -42,24 +42,26 @@ module.exports = function(app) {
         });
     });
 
-    app.post("/editUser", function(req, res) {
-        var firstName = req.query.firstName;
-        var lastName = req.query.lastName;
-        var username = req.query.username;
-        var password = req.query.password;
-        var email = req.query.email;
-        var accountType = req.query.accountType;
-        var address = req.query.address;
-        var title = req.query.title;
+    app.put("/editUser", function(req, res) {
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var username = req.body.username;
+        var password = req.body.password;
+        var email = req.body.email;
+        var accountType = req.body.accountType;
+        var address = req.body.address;
+        var title = req.body.title;
         con.query("UPDATE userInfo SET firstName = ?," +
             " lastName = ?, email = ?, password = ?, address = ?, " +
             "title = ?" +
             " WHERE " +
             "username = ?", [firstName, lastName, email, password, address,
-            title, username], function(err, res){
+            title, username], function(err, resp){
                 if (err) {
+                    res.json(resp);
                     console.log("Error");
                 } else {
+                    res.json(resp);
                     console.log("Success");
                 }
         });
