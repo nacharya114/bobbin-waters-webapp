@@ -47,9 +47,9 @@
 
         <!-- Header items are made active upon selection -->
         <ul class="nav nav-pills pull-right">
-            <li ng-class="{ active: isActive('/leave')}" ng-if="!show()" ><a href="/#/leave">Log In</a></li>
-            <li ng-class="{ active: isActive('/leave')}" ng-if="!show()" ><a href="/#/register">Register</a></li>
-            <li ng-class="{ active: isActive('/leave')}" ng-if="show()" ng-click="logOut()"><a href="/#/leave">Log Out</a></li>
+            <li ng-class="{ active: isActive('/login')}" ng-if="!show()" ><a href="/#/login">Log In</a></li>
+            <li ng-class="{ active: isActive('/register')}" ng-if="!show()" ><a href="/#/register">Register</a></li>
+            <li ng-class="{ active: isActive('/login')}" ng-if="show()" ng-click="logOut()"><a href="/#/login">Log Out</a></li>
             <li ng-class="{ active: isActive('/edit')}" ng-if="show()"><a href="/#/edit">Edit Profile</a></li>
             <li ng-class="{ active: isActive('/find')}" ng-if="show()"><a href="/#/submit">Submit Reports</a></li>
 

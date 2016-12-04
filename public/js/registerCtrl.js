@@ -16,6 +16,7 @@ registerCtrl.controller('registerCtrl', function($scope, $http, $rootScope, $loc
         }
 
         $http.put('/addUser',data).success(()=> {
+            $window.location.href = '/#/login';
             console.log('it worked');
         });
     }

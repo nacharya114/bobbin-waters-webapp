@@ -17,6 +17,7 @@ loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location,
             console.log($location.path());
             gservice.empty();
         }, () => {
+            alert("Invalid username or password");
             console.log("error in promise");
         });
         console.log("in loingCtrl");
