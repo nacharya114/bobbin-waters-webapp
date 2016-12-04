@@ -41,6 +41,24 @@ module.exports = function(app) {
         });
     });
 
+    app.put("/addUser", function(req, res) {
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var username = req.body.username;
+        var password = req.body.password;
+        var email = req.body.email;
+        var accountType = req.body.accountType;
+        var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
+        con.query("INSERT INTO userInfo SET firstName = ?, lastName = ?, "
+            + "username = ?, email = ?, password = ?, accountType = ?",
+         [firstName, lastName, username, email, password, accountType], function(err, resp) {
+            if (err) {
+                console.log("Error " + err);
+            }
+            res.json(resp);
+         });
+    });
+
     app.put("/editUser", function(req, res) {
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
@@ -66,22 +84,6 @@ module.exports = function(app) {
         });
     });
 
-    app.put("/addUser", function(req, res) {
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var username = req.body.username;
-        var password = req.body.password;
-        var email = req.body.email;
-        var accountType = req.body.accountType;
-        var values = "(" + firstName + "," + lastName + "," + username + "," + email + "," + password + "," + accountType + ")";
-        con.query("INSERT INTO userInfo (firstName, lastName, username, email, password, accountType) VALUES = ?",
-         values, function(err, resp) {
-            if (err) {
-                console.log("Error");
-            }
-            res.json(resp);
-         });
-    });
 
 
     /* ------------------------------------------------
