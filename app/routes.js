@@ -114,7 +114,7 @@ module.exports = function(app) {
         var type = req.body.type;
         var condition = req.body.condition;
         con.query("INSERT INTO sourceReportInfo date = ?, reportNumber = ?, username = ?, "
-            + "longitude = ?, latitude = ?, type = ?, condition = ?",
+            + "longitude = ?, latitude = ?, type = ?, cond = ?",
             [date, reportNumber, username, longitude, latitude, type, condition],
             function(err, resp) {
             if (err) {
@@ -154,7 +154,7 @@ module.exports = function(app) {
         var virus = req.body.virus;
         var chem = req.body.chem;
         con.query("INSERT INTO qualityReportInfo date = ?, reportNumber = ?, username = ?, "
-            + "longitude = ?, latitude = ?, condition = ?, virus = ?, chem = ?",
+            + "longitude = ?, latitude = ?, cond = ?, virus = ?, chem = ?",
             [date, reportNumber, username, longitude, latitude, condition, virus, chem],
             function(err, resp) {
             if (err) {

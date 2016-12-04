@@ -1,0 +1,56 @@
+<!-- Find Teammates (Query) Form -->
+<div class="col-md-5">
+    <!-- Creates Main Panel -->
+    <div class="panel panel-default">
+
+        <!-- Panel Title -->
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">View Reports<span class="glyphicon glyphicon-search"></span></h2>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="panel-body">
+
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>Condition</th>
+                </tr>
+                <tr ng-repeat="x in sourceReports">
+                    <td>{{x.reportNumber}}</td>
+                    <td>{{x.date}}</td>
+                    <td>{{x.latitude}}, {{x.longitude}}</td>
+                    <td>{{x.type}}</td>
+                    <td>{{x.cond}}</td>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Condition</th>
+                    <th>Virus PPM</th>
+                    <th>Chemical PPM</th>
+
+                </tr>
+                <tr ng-repeat="x in qualityReports">
+                    <td>{{x.reportNumber}}</td>
+                    <td>{{x.date}}</td>
+                    <td>{{x.latitude}}, {{x.longitude}}</td>
+                    <td>{{x.cond}}</td>
+                    <td>{{x.virus}}</td>
+                    <td>{{x.chem}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+    </div>
+</div>
