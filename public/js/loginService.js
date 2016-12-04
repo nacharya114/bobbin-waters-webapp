@@ -12,6 +12,10 @@ angular.module('loginService', [])
             return true;
         }
 
+        service.logOut = function() {
+            service.user = null;
+        }
+
         service.verifyLogin = function(user, pass) {
             console.log("in service test");
             var p = new Promise((resolve, reject)=> {

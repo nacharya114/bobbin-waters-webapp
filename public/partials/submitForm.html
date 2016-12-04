@@ -1,0 +1,63 @@
+<!-- Find Teammates (Query) Form -->
+<div class="col-md-5">
+    <!-- Creates Main Panel -->
+    <div class="panel panel-default">
+
+        <!-- Panel Title -->
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">Submit a Report<span class="glyphicon glyphicon-search"></span></h2>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="panel-body">
+
+            <!-- Creates Form -->
+            <form name ="submitForm">
+
+                <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                <div class="form-group">
+                    <label for="latitude">Your Latitude</label>
+                    <input type="text" class="form-control" id="latitude" placeholder="39.5" ng-model="formData.latitude" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Your Longitude</label>
+                    <input type="text" class="form-control" id="longitude" placeholder="-98.35" ng-model="formData.longitude" readonly>
+                </div>
+                <!-- Note ng-true-value which translates check values into explicit gender strings -->
+                 <label class="radio control-label" ng-if="checkPermissions(user)">Report Type</label>
+                <div class="radio" ng-if="checkPermissions(user)">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="radiosource" value='Source' ng-model="reportType">
+                        Source Report
+                    </label>
+                </div>
+                <div class="radio" ng-if="checkPermissions(user)" required>
+                    <label>
+                        <input type="radio" name="optionsRadios" id="radiofemale" value="Purity" ng-model="reportType">
+                        Purity Report
+                    </label>
+                </div>
+                <div class="form-group" ng-if="reportType == 'Source'">
+                    <label for="waterType">Type of Water</label>
+                    <input type="text" class="form-control" id="waterType" placeholder="5" ng-model="formData.waterType">
+                </div>
+                <div class="form-group" ng-if="reportType == 'Purity'">
+                    <label for="virusppm">Virus PPM</label>
+                    <input type="number" class="form-control" id="virusppm" placeholder="80" ng-model="formData.virusppm">
+                </div>
+                <div class="form-group" ng-if="reportType == 'Purity'">
+                    <label for="favlang">Chemical PPM</label>
+                    <input type="number" class="form-control" id="chemppm" placeholder="20" ng-model="formData.chemppm">
+                </div>
+
+                <!-- Query button. Note that its tied to queryUsers() function from queryCtrl.  -->
+                <button type="submit" class="btn btn-danger btn-block" ng-click="queryUsers()">Search</button>
+            </form>
+        </div>
+
+        <!-- Footer panel for displaying count. Note how it will only display if queryCount is greater than 0 -->
+        <div ng-show="queryCount>0" class="panel-footer">
+                <p class="text-center">Hot Dang! We Found {{queryCount}} Teammates.</p>
+        </div>
+    </div>
+</div>
