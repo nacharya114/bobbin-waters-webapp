@@ -3,9 +3,9 @@ registerCtrl.controller('registerCtrl', function($scope, $http, $rootScope, $loc
 
 
     $scope.formData = {};
+    $scope.types = ["User", "Worker", "Manager", "Administrator"];
 
     $scope.addUser = function() {
-
         var data = {
             firstName: $scope.formData.firstName,
             lastName: $scope.formData.lastName,

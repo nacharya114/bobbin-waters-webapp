@@ -6,15 +6,6 @@ editCtrl.controller('editCtrl', function($scope, $http, $rootScope, $location, $
 
 
     $scope.updateUser = function() {
-        //TODO.. PUT request to DB
-        // var firstName = req.body.firstName;
-        // var lastName = req.body.lastName;
-        // var username = req.body.username;
-        // var password = req.body.password;
-        // var email = req.body.email;
-        // var accountType = req.body.accountType;
-        // var address = req.body.address;
-        // var title = req.body.title;
         var userPassword = loginService.user.password;
         if ($scope.formData.newPassword != userPassword) {
             userPassword = $scope.formData.newPassword;

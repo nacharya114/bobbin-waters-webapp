@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="accountType">Account Type</label>
-                    <input type="text" class="form-control" id="accountType" placeholder="User" ng-model="formData.accountType" required>
+                    <select class="form-control" id="accountType" ng-options="x for x in types" ng-model="formData.accountType" required></select>
                 </div>
 
 
