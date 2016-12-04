@@ -113,10 +113,9 @@ module.exports = function(app) {
         var latitude = req.body.latitude;
         var type = req.body.type;
         var condition = req.body.condition;
-        var values = "(" + date + "," + reportNumber + "," + username + ","
-            + longitude + "," + latitude + "," + type + "," + condition + ")";
-        con.query("INSERT INTO sourceReportInfo (date, reportNumber, username, "
-            + "longitude, latitude, type, condition) VALUES = ?", values,
+        con.query("INSERT INTO sourceReportInfo date = ?, reportNumber = ?, username = ?, "
+            + "longitude = ?, latitude = ?, type = ?, condition = ?",
+            [date, reportNumber, username, longitude, latitude, type, condition],
             function(err, resp) {
             if (err) {
                 console.log("Error");
@@ -154,11 +153,9 @@ module.exports = function(app) {
         var condition = req.body.condition;
         var virus = req.body.virus;
         var chem = req.body.chem;
-        var values = "(" + date + "," + reportNumber + "," + username + ","
-            + longitude + "," + latitude + "," + condition+ "," + virus + "," +
-            chem + ")";
-        con.query("INSERT INTO qualityReportInfo (date, reportNumber, username, "
-            + "longitude, latitude, condition, virus, chem) VALUES = ?", values,
+        con.query("INSERT INTO qualityReportInfo date = ?, reportNumber = ?, username = ?, "
+            + "longitude = ?, latitude = ?, condition = ?, virus = ?, chem = ?",
+            [date, reportNumber, username, longitude, latitude, condition, virus, chem],
             function(err, resp) {
             if (err) {
                 console.log("Error");
