@@ -9,7 +9,6 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
     $scope.qualityConds = ["Safe", "Treatable", "Unsafe"];
 
     $scope.checkPermission = function(user) {
-        console.log(user.accountType);
         if (user.accountType == "User") {
             return false;
         }
@@ -36,6 +35,26 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
                 type: $scope.formData.waterType,
                 condition: $scope.formData.sourceCondition
             }
+            $http.put('/addSourceReport',data).success(()=> {
+                console.log('it worked');
+            });
+        } else if ($scope.opt == "quality") {
+            $http.get("/qualityReportCount").success(function(response) {
+                num = response[0].rowcount + 1;
+             });
+            var data = {
+                date: /*todo*/,
+                reportNumber: num,
+                username: loginService.user.username,
+                latitude: $scope.formData.latitude,
+                longitude: $scope.formData.longitude,
+                condition: $scope.formData.qualityCondition,
+                virus: $scope.formData.virusppm,
+                chem: $scope.formData.chemppm
+            }
+            $http.put('/addQualityReport',data).success(()=> {
+                console.log('it worked');
+            });
         }
     }
 });
