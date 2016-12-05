@@ -11,7 +11,7 @@
         <!-- Panel Body -->
         <div class="panel-body">
 
-            <label for="fname">Which type of report:</label>
+            <label for="reportType">Which type of report:</label>
             <label class="radio-inline"><input id="source" value="source" ng-model="opt" type="radio" name="opt">Source</label>
             <label class="radio-inline" ng-show="checkPermission(user)"><input id="quality" value="quality"  ng-model="opt" type="radio" name="opt">Quality</label>
             <label class="radio-inline" ng-show="checkManager(user)"><input id="historical" value="historical" ng-model="opt" type="radio" name="opt">Historical</label>

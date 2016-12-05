@@ -11,53 +11,48 @@
         <!-- Panel Body -->
         <div class="panel-body">
 
+            <label for="reportType">Which type of report:</label>
+            <label class="radio-inline"><input id="source" value="source" ng-model="opt" type="radio" name="opt">Source</label>
+            <label class="radio-inline" ng-show="checkPermission(user)"><input id="quality" value="quality"  ng-model="opt" type="radio" name="opt">Quality</label>
             <!-- Creates Form -->
             <form name ="submitForm">
 
                 <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
-                <div class="form-group">
+                <div class="form-group" ng-if="opt != null">
                     <label for="latitude">Your Latitude</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="39.5" ng-model="formData.latitude">
+                    <input type="text" class="form-control" id="latitude" placeholder="39.5" ng-model="formData.latitude" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-if="opt != null">
                     <label for="longitude">Your Longitude</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="-98.35" ng-model="formData.longitude">
+                    <input type="text" class="form-control" id="longitude" placeholder="-98.35" ng-model="formData.longitude" required>
                 </div>
-                <!-- Note ng-true-value which translates check values into explicit gender strings -->
-                 <label class="radio control-label" ng-if="checkPermission(user)">Report Type</label>
-                <div class="radio" ng-if="checkPermission(user)" required>
-                    <label>
-                        <input type="radio" name="optionsRadios" id="radiosource" value='Source' ng-model="reportType">
-                        Source Report
-                    </label>
-                <!-- </div> -->
-                <!-- <div class="radio" ng-if="checkPermission(user)" required> -->
-                    <label>
-                        <input type="radio" name="optionsRadios" id="radiopurity" value='Purity' ng-model="reportType">
-                        Water Report
-                    </label>
-                </div>
-                <div class="form-group" ng-if="reportType == 'Source'">
+
+                <div class="form-group" ng-if="opt == 'source'">
                     <label for="waterType">Type of Water</label>
-                    <input type="text" class="form-control" id="waterType" placeholder="5" ng-model="formData.waterType">
+                   <select class="form-control" id="waterType" ng-options="x for x in types" ng-model="formData.waterType" required></select>
                 </div>
-                <div class="form-group" ng-if="reportType == 'Purity'">
+                <div class="form-group" ng-if="opt == 'source'">
+                    <label for="sourceCondition">Condition</label>
+                    <select class="form-control" id="sourceCondition" ng-options="x for x in sourceConds" ng-model="formData.sourceCondition" required></select>
+                </div>
+
+                <div class="form-group" ng-if="opt == 'quality'">
+                    <label for="qualityCondition">Condition</label>
+                    <select class="form-control" id="qualityCondition" ng-options="x for x in qualityConds" ng-model="formData.qualityCondition" required></select>
+                </div>
+                <div class="form-group" ng-if="opt == 'quality'">
                     <label for="virusppm">Virus PPM</label>
-                    <input type="number" class="form-control" id="virusppm" placeholder="80" ng-model="formData.virusppm">
+                    <input type="number" class="form-control" id="virusppm" placeholder="80" ng-model="formData.virusppm" required>
                 </div>
-                <div class="form-group" ng-if="reportType == 'Purity'">
+                <div class="form-group" ng-if="opt == 'quality'">
                     <label for="favlang">Chemical PPM</label>
-                    <input type="number" class="form-control" id="chemppm" placeholder="20" ng-model="formData.chemppm">
+                    <input type="number" class="form-control" id="chemppm" placeholder="20" ng-model="formData.chemppm" required>
                 </div>
 
                 <!-- Query button. Note that its tied to queryUsers() function from queryCtrl.  -->
-                <button type="submit" class="btn btn-danger btn-block" ng-click="checkReport()">Submit</button>
+                <button type="submit" class="btn btn-danger btn-block" ng-if="opt != null" ng-click="checkReport()" ng-disabled="submitForm.$invalid">Submit</button>
             </form>
         </div>
 
-        <!-- Footer panel for displaying count. Note how it will only display if queryCount is greater than 0 -->
-        <div ng-show="queryCount>0" class="panel-footer">
-                <p class="text-center">Hot Dang! We Found {{queryCount}} Teammates.</p>
-        </div>
     </div>
 </div>

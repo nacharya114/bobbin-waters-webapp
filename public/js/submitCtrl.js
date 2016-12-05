@@ -4,7 +4,9 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
     //Initializing form data
     $scope.user = loginService.user;
     $scope.formData = {};
-    $scope.reportType = 'Scope';
+    $scope.types = ["Bottled", "Well", "Stream", "Lake", "Spring", "Other"];
+    $scope.sourceConds = ["Waste", "Treatable Clear", "Treatable Muddy", "Potable"];
+    $scope.qualityConds = ["Safe", "Treatable", "Unsafe"];
 
     $scope.checkPermission = function(user) {
         console.log(user.accountType);
@@ -15,10 +17,25 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
     }
 
     $scope.checkReport = function() {
-        console.log($scope.reportType);
+
+        //console.log(num +1);
     }
 
     $scope.submit = function() {
-        //TODO.. PUT request to DB
+        var num = 0
+        if ($scope.opt == "source") {
+            $http.get("/sourceReportCount").success(function(response) {
+                num = response[0].rowcount + 1;
+             });
+            var data = {
+                date: /*todo*/,
+                reportNumber: num,
+                username: loginService.user.username,
+                latitude: $scope.formData.latitude,
+                longitude: $scope.formData.longitude,
+                type: $scope.formData.waterType,
+                condition: $scope.formData.sourceCondition
+            }
+        }
     }
 });
