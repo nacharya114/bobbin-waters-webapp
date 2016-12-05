@@ -6,7 +6,7 @@ registerCtrl.controller('registerCtrl', function($scope, $http, $rootScope, $loc
     $scope.types = ["User", "Worker", "Manager", "Administrator"];
 
     $scope.addUser = function() {
-         if ($scope.formData.newPassword != $scope.formData.confPassword) {
+        if ($scope.formData.password != $scope.formData.confPassword) {
             alert("Passwords do not match");
             return false;
         }
