@@ -6,6 +6,10 @@ registerCtrl.controller('registerCtrl', function($scope, $http, $rootScope, $loc
     $scope.types = ["User", "Worker", "Manager", "Administrator"];
 
     $scope.addUser = function() {
+         if ($scope.formData.newPassword != $scope.formData.confPassword) {
+            alert("Passwords do not match");
+            return false;
+        }
         var data = {
             firstName: $scope.formData.firstName,
             lastName: $scope.formData.lastName,
