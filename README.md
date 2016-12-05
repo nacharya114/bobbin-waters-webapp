@@ -2,8 +2,6 @@
 Bobbin In The Waters Web Application.
 Report and View Water Conditions
 
-![appimage](https://raw.githubusercontent.com/afhaque/MeanMapAppV2.0/master/Resources/AppImage.png)
-
  
 ## Instructions to run locally 
 
