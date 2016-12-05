@@ -118,7 +118,7 @@ module.exports = function(app) {
             [date, reportNumber, username, longitude, latitude, type, condition],
             function(err, resp) {
             if (err) {
-                console.log("Error");
+                console.log("Error " + err);
             }
             res.json(resp);
          });

@@ -17,17 +17,18 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
 
     $scope.checkReport = function() {
 
-        //console.log(num +1);
+        console.log(new Date());
     }
 
     $scope.submit = function() {
-        var num = 0
+        var num = 0;
+        var currDate = new Date()
         if ($scope.opt == "source") {
             $http.get("/sourceReportCount").success(function(response) {
                 num = response[0].rowcount + 1;
              });
             var data = {
-                date: /*todo*/,
+                date: currDate,
                 reportNumber: num,
                 username: loginService.user.username,
                 latitude: $scope.formData.latitude,
@@ -36,6 +37,7 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
                 condition: $scope.formData.sourceCondition
             }
             $http.put('/addSourceReport',data).success(()=> {
+                $window.location.href = '/#/view';
                 console.log('it worked');
             });
         } else if ($scope.opt == "quality") {
@@ -43,7 +45,7 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
                 num = response[0].rowcount + 1;
              });
             var data = {
-                date: /*todo*/,
+                date: currDate,
                 reportNumber: num,
                 username: loginService.user.username,
                 latitude: $scope.formData.latitude,
@@ -53,6 +55,7 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
                 chem: $scope.formData.chemppm
             }
             $http.put('/addQualityReport',data).success(()=> {
+                $window.location.href = '/#/view';
                 console.log('it worked');
             });
         }

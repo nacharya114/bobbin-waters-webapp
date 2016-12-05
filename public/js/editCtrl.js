@@ -24,6 +24,7 @@ editCtrl.controller('editCtrl', function($scope, $http, $rootScope, $location, $
 
         $http.put('/editUser',data).success(()=> {
             console.log('it worked');
+            alert("Information has been updated");
         });
     }
 });
