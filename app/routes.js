@@ -41,6 +41,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/checkUser", function(req, res) {
+        var username = req.query.username;
+        var obj = { status: false};
+        con.query("SELECT * FROM userInfo WHERE username = ?",
+            username, function(err, response){
+            if (err)
+                res.json(err);
+            res.json(response);
+        });
+    });
+
     app.put("/addUser", function(req, res) {
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
