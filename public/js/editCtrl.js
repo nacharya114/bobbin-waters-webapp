@@ -7,8 +7,14 @@ editCtrl.controller('editCtrl', function($scope, $http, $rootScope, $location, $
 
     $scope.updateUser = function() {
         var userPassword = loginService.user.password;
-        if ($scope.formData.newPassword != userPassword) {
+        if ($scope.formData.newPassword != userPassword
+            && $scope.formData.newPassword != null
+            && $scope.formData.newPassword.length > 0) {
             userPassword = $scope.formData.newPassword;
+        }
+        if ($scope.formData.newPassword != $scope.formData.confPassword) {
+            alert("Passwords do not match");
+            return false;
         }
 
         var data = {
@@ -25,6 +31,7 @@ editCtrl.controller('editCtrl', function($scope, $http, $rootScope, $location, $
         $http.put('/editUser',data).success(()=> {
             console.log('it worked');
             alert("Information has been updated");
+            $window.location.href = '/#/submit';
         });
     }
 });
