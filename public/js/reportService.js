@@ -59,7 +59,7 @@ angular.module('reportService', ['loginService'])
                                         reports.push(latlon);
                                 }
 
-                                console.log(reports);
+
                                 resolve(reports);
                             });
 
@@ -92,7 +92,7 @@ angular.module('reportService', ['loginService'])
                                 //         reports.push(latlon);
                                 // }
 
-                                console.log(resp.data);
+                                //console.log(resp.data);
                                 resolve(resp.data);
                             });
 

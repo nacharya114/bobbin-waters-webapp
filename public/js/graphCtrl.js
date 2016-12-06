@@ -26,21 +26,26 @@ graphCtrl.controller('graphCtrl', function($scope, $location, $window, loginServ
 
       $scope.makeGraph = function() {
         reportService.getQualityReports().then((response)=>{
-            var itemList = [];
+            var itemList = new Array();
+            console.log(response);
             for (var i = 0; i < response.length; i++) {
                 var rep = response[i];
-                if (rep.lat == $scope.loc.lat && rep.lon == $scope.loc.lon) {
+                //console.log(rep);
+
+                if (rep.latitude == $scope.loc.lat && rep.longitude == $scope.loc.lon) {
+                    console.log("im in here");
+                    var obj;
                     if ($scope.opt == "chem") {
-                        var obj = {x : rep.date, y: rep.chem};
+                        obj = {x : rep.date, y: rep.chem};
                     } else {
-                        var obj = {x : rep.date, y: rep.virus};
+                        obj = {x : rep.date, y: rep.virus};
                     }
                     itemList.push(obj);
                 }
             }
             var dataset2 = new vis.DataSet(itemList);
             var option = {
-                start: '2016-01-01',
+                start: '2016-10-01',
                 end: '2016-12-30'
             }
 
