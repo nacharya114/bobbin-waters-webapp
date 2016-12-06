@@ -12,6 +12,7 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
 
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data){
+        console.log('in query');
         coords = {lat:data.coords.latitude, long:data.coords.longitude};
 
         // Set the latitude and longitude equal to the HTML5 coordinates

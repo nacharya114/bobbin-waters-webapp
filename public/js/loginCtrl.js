@@ -15,7 +15,7 @@ loginCtrl.controller('loginCtrl', function($scope, $http, $rootScope, $location,
 
             $window.location.href = '/#/edit';
             console.log($location.path());
-            gservice.empty();
+            gservice.refresh();
         }, () => {
             alert("Invalid username or password");
             console.log("error in promise");

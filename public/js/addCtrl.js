@@ -13,6 +13,7 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
     $scope.formData.longitude = -98.350;
     $scope.formData.latitude = 39.500;
 
+
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data){
 
@@ -27,6 +28,7 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
         $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
 
         gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+        console.log("in the addCtrl");
 
     });
 
