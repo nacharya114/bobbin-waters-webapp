@@ -24,5 +24,29 @@ graphCtrl.controller('graphCtrl', function($scope, $location, $window, loginServ
       $scope.loc = {};
       $scope.years = [2016];
 
-      var Graph2d = new vis.Graph2d(container, dataset, options);
+      $scope.makeGraph = function() {
+        reportService.getQualityReports().then((response)=>{
+            var itemList = [];
+            for (var i = 0; i < response.length; i++) {
+                var rep = response[i];
+                if (rep.lat == $scope.loc.lat && rep.lon == $scope.loc.lon) {
+                    if ($scope.opt == "chem") {
+                        var obj = {x : rep.date, y: rep.chem};
+                    } else {
+                        var obj = {x : rep.date, y: rep.virus};
+                    }
+                    itemList.push(obj);
+                }
+            }
+            var dataset2 = new vis.DataSet(itemList);
+            var option = {
+                start: '2016-01-01',
+                end: '2016-12-30'
+            }
+
+            var Graph2d = new vis.Graph2d(container, dataset2, option)
+        });
+      }
+
+      //var Graph2d = new vis.Graph2d(container, dataset, options);
 });

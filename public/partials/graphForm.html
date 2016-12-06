@@ -17,19 +17,19 @@
                 <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                 <div class="form-group" >
                     <label for="location">Location</label>
-                   <select class="form-control" id="locations" ng-options="x.stringify() for x in locations" ng-model="formData.loc" required></select>
+                   <select class="form-control" id="locations" ng-options="x.stringify() for x in locations" ng-model="loc" required></select>
                 </div>
                 <label for="reportType">Which type of report:</label>
                 <label class="radio-inline"><input id="chem" value="chem" ng-model="opt" type="radio" name="opt">Chem</label>
                 <label class="radio-inline"><input id="virus" value="virus"  ng-model="opt" type="radio" name="opt">Virus</label>
                 <div class="form-group" >
                     <label for="year">What year?</label>
-                   <select class="form-control" id="year" ng-options="x for x in years" ng-model="formData.year" required></select>
+                   <select class="form-control" id="year" ng-options="x for x in years" ng-model="year" required></select>
                 </div>
 
 
                 <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
-                <button type="submit" class="btn btn-danger btn-block" ng-click="updateUser()" ng-disabled="editForm.$invalid">Submit</button>
+                <button type="submit" class="btn btn-danger btn-block" ng-click="makeGraph()" ng-disabled="editForm.$invalid">Submit</button>
             </form>
 
             <div id="graph"></div>
