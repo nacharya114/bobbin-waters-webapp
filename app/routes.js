@@ -131,6 +131,7 @@ module.exports = function(app) {
             if (err) {
                 console.log("Error " + err);
             }
+            console.log(resp);
             res.json(resp);
          });
     });

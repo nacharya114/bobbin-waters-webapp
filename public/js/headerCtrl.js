@@ -19,6 +19,10 @@ headerCtrl.controller('headerCtrl', function($scope, $location, $window, loginSe
         gservice.empty();
     }
 
+    $scope.isManager = function() {
+        return loginService.isManager();
+    }
+
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };

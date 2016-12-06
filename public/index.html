@@ -36,6 +36,9 @@
     <script src="js/viewCtrl.js"></script>
     <script src="js/submitCtrl.js"></script>
     <script src="js/reportService.js"></script>
+    <script src="js/graphCtrl.js"></script>
+    <script src="../bower_components/vis/dist/vis.js"></script>
+    <link href="../bower_components/vis/dist/vis.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -55,7 +58,7 @@
             <li ng-class="{ active: isActive('/edit')}" ng-if="show()"><a href="/#/edit">Edit Profile</a></li>
             <li ng-class="{ active: isActive('/submit')}" ng-if="show()"><a href="/#/submit">Submit Reports</a></li>
             <li ng-class="{ active: isActive('/view')}" ng-if="show()"><a href="/#/view">View Reports</a></li>
-
+            <li ng-class="{ active: isActive('/view')}" ng-if="isManager()"><a href="/#/graph">View Graphs</a></li>
 
         </ul>
 

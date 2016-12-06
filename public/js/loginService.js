@@ -12,6 +12,11 @@ angular.module('loginService', [])
             return true;
         }
 
+        service.isManager = function() {
+            if (service.user && service.user.accountType == "Manager") return true;
+            return false;
+        }
+
         service.logOut = function() {
             service.user = null;
         }
