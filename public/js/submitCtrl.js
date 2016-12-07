@@ -26,37 +26,38 @@ submitCtrl.controller('submitCtrl', function($scope, $http, $rootScope, $locatio
         if ($scope.opt == "source") {
             $http.get("/sourceReportCount").success(function(response) {
                 num = response[0].rowcount + 1;
-             });
-            var data = {
-                date: currDate,
-                reportNumber: num,
-                username: loginService.user.username,
-                latitude: $scope.formData.latitude,
-                longitude: $scope.formData.longitude,
-                type: $scope.formData.waterType,
-                condition: $scope.formData.sourceCondition
-            }
-            $http.put('/addSourceReport',data).success(()=> {
-                $window.location.href = '/#/view';
-                console.log('it worked');
+
+                var data = {
+                    date: currDate,
+                    reportNumber: num,
+                    username: loginService.user.username,
+                    latitude: $scope.formData.latitude,
+                    longitude: $scope.formData.longitude,
+                    type: $scope.formData.waterType,
+                    condition: $scope.formData.sourceCondition
+                }
+                $http.put('/addSourceReport',data).success(()=> {
+                    $window.location.href = '/#/view';
+                    console.log('it worked');
+                });
             });
         } else if ($scope.opt == "quality") {
             $http.get("/qualityReportCount").success(function(response) {
                 num = response[0].rowcount + 1;
-             });
-            var data = {
-                date: currDate,
-                reportNumber: num,
-                username: loginService.user.username,
-                latitude: $scope.formData.latitude,
-                longitude: $scope.formData.longitude,
-                condition: $scope.formData.qualityCondition,
-                virus: $scope.formData.virusppm,
-                chem: $scope.formData.chemppm
-            }
-            $http.put('/addQualityReport',data).success(()=> {
-                $window.location.href = '/#/view';
-                console.log('it worked');
+                var data = {
+                    date: currDate,
+                    reportNumber: num,
+                    username: loginService.user.username,
+                    latitude: $scope.formData.latitude,
+                    longitude: $scope.formData.longitude,
+                    condition: $scope.formData.qualityCondition,
+                    virus: $scope.formData.virusppm,
+                    chem: $scope.formData.chemppm
+                }
+                $http.put('/addQualityReport',data).success(()=> {
+                    $window.location.href = '/#/view';
+                    console.log('it worked');
+                });
             });
         }
     }
